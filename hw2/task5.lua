@@ -14,13 +14,14 @@ local h = function(f)
 end
 
 local bind = function(f, ...)
-	args = {...}
-	length = #args
+	local args = {...}
+	local length = #args
 	return function(...)
-		for i, arg in ipairs({...}) do
-			args[length+i] = arg
+		local answer = {...}
+		for i, val in ipairs(args) do
+			table.insert(answer, i, val)
 		end
-		return f(unpack(args))
+		return f(unpack(answer))
 	end
 end
 
